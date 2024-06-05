@@ -1,4 +1,6 @@
 const Usuario = require("../model/usuarioModel");
+const jwt = require('jsonwebtoken');
+
 module.exports = class usuarioController {
   //CREATE
   static async UsuarioCreate(req, res) {
@@ -63,8 +65,7 @@ module.exports = class usuarioController {
       //esse teste abaixo deve ser feito no banco de dados
       if (usuario != undefined) {
         const id = usuario.id_usuario; //esse id vira do seu banco de dados
-        const token = jwt.sign({ id }, process.env.SECRET, {
-          expiresIn: 300, //expira em 5 minutos
+        const token = jwt.sign({ id }, process.env.SECRET, {expiresIn: '1d' //expira em 5 minutos
         });
         return res.json({ auth: true, token: token }); //retorna o token
       } else {

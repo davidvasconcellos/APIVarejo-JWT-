@@ -12,8 +12,7 @@ router.get("/", (req, res) => {
 //POST - CADASTRAR
 router.post("/add_usuario", usuarioController.UsuarioCreate);
 //GET - LISTAR
-router.get(
-  "/usuarios/:id?",
+router.get("/usuarios/:id?",
   usuarioController.VerificaJWT,
   usuarioController.UsuarioListar,
 );
